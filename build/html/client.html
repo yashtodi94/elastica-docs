@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Working with Elastica Client Object &mdash; Elastica-Docs  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Elastica-Docs  documentation" href="index.html"/>
+        <link rel="prev" title="Installation" href="install.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Elastica-Docs
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="goals.html">Goals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Working with Elastica Client Object</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-to-elasticsearch">Connecting to Elasticsearch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#running-a-single-node">Running a single node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-a-cluster">Running a cluster</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#client-configurations">Client Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lookup-the-current-client-configuration">Lookup the current client configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Elastica-Docs</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Working with Elastica Client Object</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/client.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="working-with-elastica-client-object">
+<span id="index-0"></span><h1>Working with Elastica Client Object<a class="headerlink" href="#working-with-elastica-client-object" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="connecting-to-elasticsearch">
+<h2>Connecting to Elasticsearch<a class="headerlink" href="#connecting-to-elasticsearch" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Assuming you have elasticsearch set up and running.</p>
+</div>
+<div class="section" id="running-a-single-node">
+<h3>Running a single node<a class="headerlink" href="#running-a-single-node" title="Permalink to this headline">¶</a></h3>
+<p>When your single elasticsearch node is running on <code class="docutils literal"><span class="pre">localhost:9200</span></code>, which is the default, you can simply connect:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="nv">$elasticaClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Elastica\Client</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-a-cluster">
+<h3>Running a cluster<a class="headerlink" href="#running-a-cluster" title="Permalink to this headline">¶</a></h3>
+<p>Elasticsearch was built with the cloud / multiple distributed servers in mind. It is quite easy to start a elasticsearch cluster simply by starting multiple instances of elasticsearch on one server or on multiple servers. To start multiple instances of elasticsearch on your local machine, just run the command to start an instance in the elasticsearch folder twice.</p>
+<p>One of the goals of the distributed search index is availability. If one server goes down, search results should still be served. But if the client connects to only the server that just went down, no results are returned anymore. Because of this, <code class="docutils literal"><span class="pre">\Elastica\Client</span></code> supports multiple servers which are accessed in a round robin algorithm. This is the only and also most basic option at the moment. So if we start a node on port 9200 and port 9201 above, we pass the following arguments to <code class="docutils literal"><span class="pre">\Elastica\Client</span></code> to access both servers:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="nv">$elasticClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Elastica\Client</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+    <span class="s1">&#39;servers&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="s1">&#39;port&#39;</span> <span class="o">=&gt;</span> <span class="mi">9200</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="s1">&#39;port&#39;</span> <span class="o">=&gt;</span> <span class="mi">9201</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="client-configurations">
+<h2>Client Configurations<a class="headerlink" href="#client-configurations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="lookup-the-current-client-configuration">
+<h3>Lookup the current client configuration<a class="headerlink" href="#lookup-the-current-client-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Generally, an elastica client object consists of the following parameters:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="8%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Default Value</th>
+<th class="head">Additional Info</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>host</td>
+<td><code class="docutils literal"><span class="pre">null</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>port</td>
+<td><code class="docutils literal"><span class="pre">null</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>path</td>
+<td><code class="docutils literal"><span class="pre">null</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>url</td>
+<td><code class="docutils literal"><span class="pre">null</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>proxy</td>
+<td><code class="docutils literal"><span class="pre">null</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>transport</td>
+<td><code class="docutils literal"><span class="pre">null</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>persistent</td>
+<td><code class="docutils literal"><span class="pre">true</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>timeout</td>
+<td><code class="docutils literal"><span class="pre">null</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>connections</td>
+<td><code class="docutils literal"><span class="pre">[]</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>roundRobin</td>
+<td><code class="docutils literal"><span class="pre">false</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>log</td>
+<td><code class="docutils literal"><span class="pre">false</span></code></td>
+<td>Set to true, to enable logging, set a string to log to a specific file</td>
+</tr>
+<tr class="row-odd"><td>retryOnConflict</td>
+<td><code class="docutils literal"><span class="pre">0</span></code></td>
+<td>Used while updating a document.</td>
+</tr>
+<tr class="row-even"><td>bigintConversion</td>
+<td><code class="docutils literal"><span class="pre">false</span></code></td>
+<td>Set to true to enable the JSON bigint to string conversion option (see issue <a class="reference external" href="https://github.com/ruflin/Elastica/issues/717">#717</a>)</td>
+</tr>
+<tr class="row-odd"><td>username</td>
+<td><code class="docutils literal"><span class="pre">null</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>password</td>
+<td><code class="docutils literal"><span class="pre">null</span></code></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You may find an additional <code class="docutils literal"><span class="pre">connectionStrategy</span></code> parameter which is set to <code class="docutils literal"><span class="pre">RoundRobin</span></code> or <code class="docutils literal"><span class="pre">Simple</span></code> depending on the <code class="docutils literal"><span class="pre">roundRobin</span></code> flag being <code class="docutils literal"><span class="pre">true</span></code> or <code class="docutils literal"><span class="pre">false</span></code> respectively.</p>
+</div>
+<p>The current configuration of an elastica client can be found using the <code class="docutils literal"><span class="pre">getConfig()</span></code> and <code class="docutils literal"><span class="pre">getConfigValue()</span></code> methods.</p>
+<p>The <code class="docutils literal"><span class="pre">getConfig()</span></code> method returns the whole config of the elastica client object as an array.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="nv">$elasticClient</span><span class="o">-&gt;</span><span class="na">getConfig</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Optionally, a key can be passed to <code class="docutils literal"><span class="pre">getConfig()</span></code> to fetch specific information.</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+
+<span class="nv">$elasticClient</span><span class="o">-&gt;</span><span class="na">getConfig</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">);</span>
+
+<span class="c1">//OR</span>
+
+<span class="nv">$elasticClient</span><span class="o">-&gt;</span><span class="na">getConfig</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="install.html" class="btn btn-neutral" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Yash Todi.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
