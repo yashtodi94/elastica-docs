@@ -47,9 +47,6 @@ One of the goals of the distributed search index is availability. If one server 
 Client Configurations
 ---------------------
 
-Lookup the current client configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Generally, an elastica client object consists of the following parameters:
 
 ================ ============= ===============
@@ -75,6 +72,9 @@ password         ``null``
 .. note::
 
 	You may find an additional ``connectionStrategy`` parameter which is set to ``RoundRobin`` or ``Simple`` depending on the ``roundRobin`` flag being ``true`` or ``false`` respectively.
+
+Lookup the current client configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The current configuration of an elastica client can be found using the ``getConfig()`` and ``getConfigValue()`` methods.
 
