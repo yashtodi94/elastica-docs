@@ -72,7 +72,7 @@ password         ``null``
 
 	You may find an additional ``connectionStrategy`` parameter which is set to ``RoundRobin`` or ``Simple`` depending on the ``roundRobin`` flag being ``true`` or ``false`` respectively.
 
-The currentsfkgsklnslnvgslkjvnslkjvnsljgnvsglkjgn configuration of an elastica client can be found using the ``getConfig()`` and ``getConfigValue()`` methods.
+The current configuration of an elastica client can be found using the ``getConfig()`` and ``getConfigValue()`` methods.
 
 The ``getConfig()`` method returns the whole config of the elastica client object as an array.
 
