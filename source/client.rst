@@ -78,25 +78,26 @@ password         ``null``
 
 The current configuration of an elastica client can be found using the ``getConfig()`` and ``getConfigValue()`` methods.
 
-The ``getConfig()`` method returns the whole config of the elastica client object as an array.
+The ``getConfig()`` method returns the whole config of the elastica client object as an array. Optionally, a key can be passed to fetch specific information.
 
 .. code-block:: php
 
 	<?php
 
-	$elasticClient->getConfig();
+	$elasticClient->getConfig();       // Will return the whole config
 
-Optionally, a key can be passed to ``getConfig()`` to fetch specific information.
+	$elasticClient->getConfig('host'); // Will return the host
+
+	$elasticClient->getConfig('port'); // Will return the port
+
+The ``getConfigValue()`` method compulsorily requires a key parameter which fetches the required information. Optionally, a second parameter can be passed as a default value. The default value is returned in case the key is not found to be present in the config.
 
 .. code-block:: php
 
 	<?php
 
-	$elasticClient->getConfig('host');
+	$elasticClient->getConfigValue('host');           // Will return the host
 
-	//OR
+	$elasticClient->getConfigValue('host', 'foo'); 	  // Will return the host
 
-	$elasticClient->getConfig('port');
-
-
-
+	$elasticClient->getConfigValue('hosting', 'foo'); // Will return 'foo'
