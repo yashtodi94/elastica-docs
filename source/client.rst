@@ -40,6 +40,10 @@ One of the goals of the distributed search index is availability. If one server 
 	    )
 	));
 
+.. note::
+	
+	A callback function can be passed as a second parameter while creating the client object.
+
 Client Configurations
 ---------------------
 
