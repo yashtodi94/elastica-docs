@@ -73,8 +73,8 @@ password         ``null``
 
 	You may find an additional ``connectionStrategy`` parameter which is set to ``RoundRobin`` or ``Simple`` depending on the ``roundRobin`` flag being ``true`` or ``false`` respectively.
 
-Lookup the current client configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Lookup the client configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The current configuration of an elastica client can be found using the ``getConfig()`` and ``getConfigValue()`` methods.
 
@@ -101,3 +101,22 @@ The ``getConfigValue()`` method compulsorily requires a key parameter which fetc
 	$elasticClient->getConfigValue('host', 'foo'); 	  // Will return the host
 
 	$elasticClient->getConfigValue('hosting', 'foo'); // Will return 'foo'
+
+Set/Overwrite the client configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An array can be passed to ``setConfig()`` method which will add/update new values to the existing client config while retaining the default values.
+
+.. code-block:: php
+
+	<?php
+
+	$elasticClient->setConfig( array( 'port' => '9201' ) ); // Will set the port to 9201 and retain the default values for the rest
+
+However, to set a specific value, it is better to use the ``setConfigValue()`` method with the ``key`` and ``value`` passed as parameters.
+
+.. code-block:: php
+
+	<?php
+
+	$elasticClient->setConfigValue('port', '9201'); // Will set the port to 9201 and retain the default values for the rest
