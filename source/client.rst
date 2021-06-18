@@ -59,7 +59,7 @@ url              ``null``
 proxy            ``null``
 transport        ``null``
 persistent       ``true``
-timeout          ``null``
+timeout          ``null``      Float time of the request in seconds. Must be higher than 1. Default is set to 300 seconds.
 connections      ``[]``
 roundRobin       ``false``
 log              ``false``     Set to true, to enable logging, set a string to log to a specific file
